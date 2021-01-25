@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,13 +23,11 @@ Route::get('/', [HomeController::class, 'index']);
 //criando grupo para rotas do painel - Parte "de trás" do sistema
 Route::prefix('painel')->group(function (){
 
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin');
+
+    //rota para login
+    Route::get('login', [LoginController::class, 'index'])->name('login');
 
 });
 
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Auth::routes();
