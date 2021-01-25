@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Parte frontal do sistema
+Route::get('/', [HomeController::class, 'index']);
+
+
+//criando grupo para rotas do painel - Parte "de trás" do sistema
+Route::prefix('painel')->group(function (){
+
+    Route::get('/', [HomeController::class, 'index']);
+
 });
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
