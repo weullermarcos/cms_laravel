@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,15 @@ Route::prefix('painel')->group(function (){
 
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin');
 
-    //rota para login
+    //rota para página de login
     Route::get('login', [LoginController::class, 'index'])->name('login');
+
+    //rota para realizar autenticação
+    Route::post('login', [LoginController::class, 'authenticate']);
+
+    Route::get('register', [RegisterController::class, 'index'])->name('register');
+    Route::post('register', [RegisterController::class, 'register']);
+
 
 });
 

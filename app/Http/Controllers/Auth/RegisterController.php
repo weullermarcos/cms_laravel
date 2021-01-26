@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/painel';
 
     /**
      * Create a new controller instance.
@@ -70,4 +70,16 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function index(){
+
+        //echo "veio até aqui";
+        return view('admin.register'); //retorna a página com o formulário de registro
+    }
+
+    public function register(){
+
+        echo "aqui vai fazer as paradas pra registrar";
+    }
+
 }
