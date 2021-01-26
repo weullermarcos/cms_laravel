@@ -12,8 +12,9 @@
     <form method="POST">
 
         @csrf
-        <br><br>Login: <input type="text" name="login">
+        <br><br>E-mail: <input type="email" name="email">
         <br><br>Senha: <input type="password" name="password">
+        <br> <input type="checkbox" name="remember" id="remember"> Lembrar-me
         <br><br> <input type="submit" name="Logar">
 
     <form>

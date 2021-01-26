@@ -18,7 +18,7 @@
 
 @section('css')
 
-    /*adiciona css específicos para essa páginas*/
+{{--    /*adiciona css específicos para essa páginas*/--}}
 
 @endsection
 

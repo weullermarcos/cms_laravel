@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
     }
 
@@ -77,9 +79,34 @@ class RegisterController extends Controller
         return view('admin.register'); //retorna a página com o formulário de registro
     }
 
-    public function register(){
+    public function register(Request $request){
 
-        echo "aqui vai fazer as paradas pra registrar";
+        //recebendo dados do formulário
+        $data = $request->only([
+
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
+        ]);
+
+        //enviando dados para validação
+        $validator = $this->validator($data);
+
+        if($validator->fails()){
+
+            //redireciona para a rota de registro passando os erros e preenchendo os campos do formulário
+            return redirect()->route('register')->withErrors($validator)->withInput();
+        }
+
+        //cria o usuário
+        $user = $this->create($data);
+
+        //faço o login com o usuário
+        Auth::login($user);
+
+        return redirect()->route('admin');
+
     }
 
 }

@@ -15,7 +15,7 @@
             <br><br>Nome completo: <input type="text" name="name">
             <br><br>E-mail: <input type="email" name="email">
             <br><br>Senha: <input type="password" name="password">
-            <br><br>Confirme a Senha: <input type="password" name="confirm_password">
+            <br><br>Confirme a Senha: <input type="password" name="password_confirmation">
             <br><br> <input type="submit" name="Registrar">
 
         <form>
