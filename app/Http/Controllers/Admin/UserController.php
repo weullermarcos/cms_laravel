@@ -17,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //recuperando todos os usuários
-        $users = User::all();
+        //recuperando todos os usuários - Fazendo paginação
+        $users = User::paginate(10);
 
         //retornando usuários recuperados como parametro
         return view('admin.users.index', ['users' => $users]);
