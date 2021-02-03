@@ -6,11 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +28,11 @@ class UserController extends Controller
         //recuperando todos os usuários - Fazendo paginação
         $users = User::paginate(10);
 
+        //recuperando id do usuário logado
+        $loggedId = Auth::id();
+
         //retornando usuários recuperados como parametro
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users, 'loggedId' => $loggedId]);
     }
 
     /**
@@ -193,9 +203,6 @@ class UserController extends Controller
             return redirect()->route('users.index');
 
         }
-
-        //return redirect()->route('users.index');
-
     }
 
     /**
@@ -206,6 +213,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //recuperando o id do usuário logado
+        $loggedId = Auth::id();
+
+        if($loggedId != $id){
+
+            $user = User::find($id);
+            $user->delete();
+
+        }
+
+        return redirect()->route('users.index');
+
     }
 }
