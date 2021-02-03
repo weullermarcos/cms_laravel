@@ -15,7 +15,8 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth'); //adicionando middleware para verificar se o usuário está logad
+        $this->middleware('can:edit-users'); //adicionando middlera para verificar se usuário tem permissão de administrador para ver as páginas
     }
 
     /**
