@@ -16,16 +16,3 @@
 @endsection
 
 
-@section('css')
-
-{{--    /*adiciona css específicos para essa páginas*/--}}
-
-@endsection
-
-
-@section('js')
-
-    {{--    adiciona javascripts para essa páginas--}}
-
-@endsection
-

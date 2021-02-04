@@ -201,9 +201,9 @@ class UserController extends Controller
 
             $user->save();
 
-            return redirect()->route('users.index');
-
         }
+
+        return redirect()->route('users.index');
     }
 
     /**
