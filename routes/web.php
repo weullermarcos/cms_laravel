@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
 use \App\Http\Controllers\Admin\UserController;
 use \App\Http\Controllers\Admin\ProfileController;
+use \App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::prefix('painel')->group(function (){
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
     Route::put('profilesave', [ProfileController::class, 'save'])->name('profile.save');
+
+    Route::get('settings', [SettingController::class, 'index'])->name('settings');
+    Route::put('save', [SettingController::class, 'save'])->name('settings.save');
 
 });
 
