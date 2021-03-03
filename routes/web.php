@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
@@ -44,6 +45,9 @@ Route::prefix('painel')->group(function (){
 
     //equivale ao crud para rotas de usuários
     Route::resource('users', UserController::class);
+
+    //equivale ao crud para rotas de páginas
+    Route::resource('pages', PageController::class);
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
