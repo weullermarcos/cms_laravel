@@ -1,1 +1,7 @@
-<h1> Página Inicial do Site</h1>
+@extends('site.layout')
+
+@section('title', 'TITULO DE TESTE')
+
+@section('content')
+    ...
+@endsection

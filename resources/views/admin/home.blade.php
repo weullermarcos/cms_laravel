@@ -6,7 +6,23 @@
 
 @section('content_header')
 
-    <h1> Dashboard: </h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1> Dashboard: </h1>
+        </div>
+
+        <div class="col-md-6">
+
+            <form method="GET">
+                <select onchange="this.form.submit()" name="interval" class="float-md-right">
+                    <option value="30"  {{$dateInterval == 30  ? 'selected' : ''}}>Últimos 30 dias</option>
+                    <option value="60"  {{$dateInterval == 60  ? 'selected' : ''}}>Últimos 2 meses</option>
+                    <option value="90"  {{$dateInterval == 90  ? 'selected' : ''}}>Últimos 3 meses</option>
+                    <option value="180" {{$dateInterval == 180 ? 'selected' : ''}}>Últimos 6 meses</option>
+                </select>
+            </form>
+        </div>
+    </div>
 
 @endsection
 

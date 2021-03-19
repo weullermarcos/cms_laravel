@@ -59,3 +59,5 @@ Route::prefix('painel')->group(function (){
 });
 
 //Auth::routes();
+
+Route::fallback();
