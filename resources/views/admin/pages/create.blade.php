@@ -48,7 +48,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Conteúdo da página: </label>
                     <div class="col-sm-10">
-                        <textarea name="body" class="form-control">{{old('body')}}</textarea>
+                        <textarea name="body" class="form-control bodyfiled">{{old('body')}}</textarea>
                     </div>
                 </div>
 
@@ -63,5 +63,28 @@
 
         </div>
     </div>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+
+    <script>
+
+        tinymce.init({
+
+            selector: "textarea.bodyfiled",
+            height: 300,
+            menubar: false,
+            plugins: ['link', 'image', 'autoresize', 'lists'],
+            toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link image | bullist numlist",
+            content_css: [
+                '{{asset('assets/css/content.css')}}'
+            ],
+            images_upload_url: '{{route('imageupload')}}',
+            images_upload_credentials: true,
+            convert_urls: false,
+
+        });
+
+    </script>
+
 @endsection
 
